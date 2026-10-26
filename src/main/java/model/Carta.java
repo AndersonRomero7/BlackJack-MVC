@@ -6,6 +6,7 @@ package model;
  * @author Anderson Romero
  * @author Javier Patiño
  */
+
 public class Carta {
 
     private final String palo;

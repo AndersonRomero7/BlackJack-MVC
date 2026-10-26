@@ -1,66 +1,54 @@
 package model;
 
 /**
- * Representa al jugador.
+ * Representa al jugador humano del Blackjack.
+ * Administra su mano y su saldo de fichas, valida
+ * las apuestas y permite descontar o acreditar fichas.
  *
  * @author Anderson Romero
  * @author Javier Patiño
  */
+
 public class Jugador {
 
-    private final String nombre;
-    private int saldo;
-    private int apuestaActual;
     private final Mano mano;
+    private int saldo;
 
-    public Jugador(String nombre, int saldoInicial) {
-        this.nombre = nombre;
-        this.saldo = saldoInicial;
-        this.apuestaActual = 0;
-        this.mano = new Mano();
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getSaldo() {
-        return saldo;
-    }
-
-    public int getApuestaActual() {
-        return apuestaActual;
+    public Jugador() {
+        mano = new Mano();
+        saldo = 1000;
     }
 
     public Mano getMano() {
         return mano;
     }
 
-    public boolean apuestaEsValida(int apuesta) {
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public boolean puedeApostar(int apuesta) {
         return apuesta >= 10
                 && apuesta % 10 == 0
                 && apuesta <= saldo;
     }
 
-    public boolean realizarApuesta(int apuesta) {
-        if (!apuestaEsValida(apuesta)) {
+    public boolean descontarApuesta(int apuesta) {
+        if (!puedeApostar(apuesta)) {
             return false;
         }
 
         saldo -= apuesta;
-        apuestaActual = apuesta;
         return true;
     }
 
-    public void recibirCarta(Carta carta) {
-        mano.agregarCarta(carta);
-    }
+    public void acreditarFichas(int cantidad) {
+        if (cantidad < 0) {
+            throw new IllegalArgumentException(
+                    "La cantidad no puede ser negativa."
+            );
+        }
 
-    public void acreditarSaldo(int cantidad) {
         saldo += cantidad;
-    }
-
-    public void limpiarMano() {
-        mano.limpiar();
     }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
  * @author Anderson Romero
  * @author Javier Patiño
  */
+
 public class Mazo {
 
     private final Carta[] cartas;
