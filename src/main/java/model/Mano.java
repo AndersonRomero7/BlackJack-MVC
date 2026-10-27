@@ -102,4 +102,42 @@ public class Mano {
     public String toString() {
         return cartas + " | Puntaje: " + calcularPuntaje();
     }
+
+    /**
+     * Regla de veinte y medio se consigue con dos cartas iniciales: una J, Q o K y un 4.
+     */
+    public boolean tieneVeinteYMedioInicial() {
+        if (cartas.size() != 2) {
+            return false;
+        }
+
+        String valorPrimera = cartas.get(0).getNombreValor();
+        String valorSegunda = cartas.get(1).getNombreValor();
+
+        boolean primeraEsFigura =
+                valorPrimera.equals("J")
+                        || valorPrimera.equals("Q")
+                        || valorPrimera.equals("K");
+
+        boolean segundaEsFigura =
+                valorSegunda.equals("J")
+                        || valorSegunda.equals("Q")
+                        || valorSegunda.equals("K");
+
+        return (primeraEsFigura && valorSegunda.equals("4"))
+                || (segundaEsFigura && valorPrimera.equals("4"));
+    }
+
+    public boolean tieneAs() {
+        for (Carta carta : cartas) {
+            if (carta.esAs()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean tieneDosCartas() {
+        return cartas.size() == 2;
+    }
 }

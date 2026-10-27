@@ -54,10 +54,7 @@ public class Mazo {
         siguienteCarta = 0;
     }
 
-    /*
-     * Entrega una carta y avanza la posición.
-     * Por eso una misma carta no puede salir dos veces.
-     */
+    // Entrega una carta y avanza la posición. Por eso una misma carta no puede salir dos veces.//
     public Carta entregarCarta() {
         if (estaVacio()) {
             throw new IllegalStateException("No quedan cartas en el mazo.");

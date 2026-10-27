@@ -9,6 +9,7 @@ package model;
  * @author Anderson Romero
  * @author Javier Patiño
  */
+
 public class Computador {
 
     private final Mano mano;
